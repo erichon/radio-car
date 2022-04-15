@@ -68,11 +68,12 @@ radio.onReceivedValue(function (name, value) {
     if (name == "x") {
         if (value > 600) {
             aclockwise()
-            aclockwise2()
-        }
-        if (value < 400) {
-            clockwise()
             clockwise2()
+        } else if (value < 400) {
+            clockwise()
+            aclockwise2()
+        } else {
+            stop()
         }
     }
     if (name == "y") {
@@ -84,6 +85,9 @@ radio.onReceivedValue(function (name, value) {
             aclockwise()
             aclockwise2()
         }
+    }
+    if (name == "stop") {
+        stop()
     }
 })
 radio.setGroup(1)
