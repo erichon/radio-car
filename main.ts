@@ -20,10 +20,10 @@ input.onButtonPressed(Button.A, function () {
     clockwise2()
 })
 function clockwise2 () {
-    pins.digitalWritePin(DigitalPin.P15, 0)
-    pins.digitalWritePin(DigitalPin.P16, 0)
-    pins.digitalWritePin(DigitalPin.P13, 1)
-    pins.digitalWritePin(DigitalPin.P14, 1)
+    pins.digitalWritePin(DigitalPin.P13, 0)
+    pins.digitalWritePin(DigitalPin.P14, 0)
+    pins.digitalWritePin(DigitalPin.P15, 1)
+    pins.digitalWritePin(DigitalPin.P16, 1)
 }
 function clockwise () {
     pins.digitalWritePin(DigitalPin.P2, 0)
@@ -59,18 +59,31 @@ input.onButtonPressed(Button.B, function () {
     aclockwise2()
 })
 function aclockwise2 () {
-    pins.digitalWritePin(DigitalPin.P13, 0)
-    pins.digitalWritePin(DigitalPin.P14, 0)
-    pins.digitalWritePin(DigitalPin.P15, 1)
-    pins.digitalWritePin(DigitalPin.P16, 1)
+    pins.digitalWritePin(DigitalPin.P15, 0)
+    pins.digitalWritePin(DigitalPin.P16, 0)
+    pins.digitalWritePin(DigitalPin.P13, 1)
+    pins.digitalWritePin(DigitalPin.P14, 1)
 }
 radio.onReceivedValue(function (name, value) {
     if (name == "x") {
-        basic.showString("x")
+        if (value > 600) {
+            aclockwise()
+            aclockwise2()
+        }
+        if (value < 400) {
+            clockwise()
+            clockwise2()
+        }
     }
     if (name == "y") {
-        basic.showString("y")
+        if (value > 600) {
+            clockwise()
+            clockwise2()
+        }
+        if (value < 400) {
+            aclockwise()
+            aclockwise2()
+        }
     }
-    basic.showNumber(value)
 })
 radio.setGroup(1)
