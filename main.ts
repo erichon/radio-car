@@ -66,24 +66,22 @@ function aclockwise2 () {
 }
 radio.onReceivedValue(function (name, value) {
     if (name == "x") {
-        if (value > 600) {
+        if (value > 550) {
             aclockwise()
             clockwise2()
-        } else if (value < 400) {
+        } else if (value < 450) {
             clockwise()
             aclockwise2()
-        } else {
-            stop()
         }
-    }
-    if (name == "y") {
-        if (value > 600) {
-            clockwise()
-            clockwise2()
-        }
-        if (value < 400) {
-            aclockwise()
-            aclockwise2()
+    } else {
+        if (name == "y") {
+            if (value > 550) {
+                clockwise()
+                clockwise2()
+            } else if (value < 450) {
+                aclockwise()
+                aclockwise2()
+            }
         }
     }
     if (name == "stop") {
